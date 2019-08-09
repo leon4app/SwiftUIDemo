@@ -27,9 +27,11 @@ struct CategoryHome: View {
                 .scaledToFill()
                 .frame(height: 200)
                 .clipped()
+                .listRowInsets(EdgeInsets())
                 ForEach(categories.keys.sorted(), id: \.self) { key in
                     CategoryRow(categoryName: key, items: self.categories[key]!)
                 }
+                .listRowInsets(EdgeInsets())
             }
             .navigationBarTitle(Text("Featured"))
         }
