@@ -53,6 +53,8 @@ struct HikeView: View {
                 HikeDetail(hike: hike)
                     .transition(.moveAndFade)
             }
+            
+            Spacer()
         }
     }
 }
