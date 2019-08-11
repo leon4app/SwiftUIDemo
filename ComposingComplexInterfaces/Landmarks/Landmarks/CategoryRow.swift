@@ -18,11 +18,17 @@ struct CategoryRow: View {
                 .font(.headline)
                 .padding(.leading, 15)
                 .padding(.top, 5)
-            
+            // Bugs here with Xcode 11 beta 5.
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(self.items) { landmark in
-                        CategoryItem(landmark: landmark)
+                        NavigationLink(
+                            destination: LandmarkDetail(
+                                landmark: landmark
+                            )
+                        ) {
+                            CategoryItem(landmark: landmark)
+                        }
                     }
                 }
             }
@@ -36,10 +42,12 @@ struct CategoryItem: View {
     var body: some View {
         VStack(alignment: .leading) {
             landmark.image
+                .renderingMode(.original)
                 .resizable()
                 .frame(width: 155, height: 155)
                 .cornerRadius(5)
             Text(landmark.name)
+                .foregroundColor(.primary)
                 .font(.caption)
         }
         .padding(.leading, 15)
